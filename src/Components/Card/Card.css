@@ -11,28 +11,15 @@
   width: 400px;
 }
 .card {
-  height: 300px;
   width: 250px;
   margin: auto;
   background-color: #fff;
-  box-shadow: 5px 2px 7px 1px #000;
 }
 .cardimg {
   text-align: center;
+  margin: auto;
 }
 .img {
   width: 150px;
   height: 150px;
-}
-.detail {
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.content {
-  flex: 1;
-}
-.tittle {
-  font-weight: bold;
 }

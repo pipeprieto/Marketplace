@@ -1,5 +1,6 @@
 import "./App.css";
 import Card from "./Components/Card/Card";
+import Practica from "./Components/Practica/Practica";
 import imagen from "./images/prueba.jpeg";
 function App() {
   return (
