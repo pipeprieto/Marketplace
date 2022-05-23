@@ -1,10 +1,11 @@
 import "./App.css";
 import Card from "./Components/Card/Card";
-import Practica from "./Components/Practica/Practica";
+import Header from "./Components/Header/Header";
 import imagen from "./images/prueba.jpeg";
 function App() {
   return (
     <div className="App">
+      <Header />
       <Card
         imagen={imagen}
         alt="Producto"
