@@ -1,9 +1,12 @@
+.header {
+  color: #fff;
+}
 ul {
   list-style: none;
 }
 a {
-  color: #000;
+  color: #fff;
 }
 a:hover {
-  color: #000;
+  color: #fff;
 }
