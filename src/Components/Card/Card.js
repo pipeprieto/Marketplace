@@ -1,47 +1,111 @@
-import { useState } from "react";
-import "./Card.css";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import styled from "styled-components";
 
 export default function Card(props) {
-  const [cont, setState] = useState(0);
-
-  const addProduct = () => {
-    setState(cont + 1);
-  };
-
-  const susbtractProduct = () => {
-    setState(cont - 1);
-  };
+  const Id = styled.p`
+    display: none;
+  `;
+  const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 350px;
+    margin-left: 0;
+  `;
+  const ProductCard = styled.div`
+    width: 250px;
+    margin: auto;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+      0 0 0 1px rgb(10 10 10 / 2%);
+    position: relative;
+    min-width: 0;
+    max-width: 100%;
+    word-wrap: break-word;
+  `;
+  const Imgcontainer = styled.div`
+    margin: auto;
+    width: 50%;
+  `;
+  const CardImg = styled.img`
+    text-align: center;
+    width: 150px;
+    height: 150px;
+  `;
+  const Cardbody = styled.div`
+    padding: 1rem 1rem;
+  `;
+  const Flex = styled.div`
+    display: flex;
+  `;
+  const Flexed = styled.p`
+    flex: 1;
+  `;
+  const Flexend = styled.p`
+    text-align: right;
+  `;
+  const Title = styled.p`
+    font-weight: bold;
+  `;
+  const ButtonContainer = styled.div`
+    margin: auto;
+  `;
+  const Button = styled.div`
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    width: 80%;
+    margin-left: 10%;
+  `;
 
   return (
-    <div className="container">
-      <div className="card">
-        <img src={props.imagen} alt={props.alt} className="cardimg img" />
-        <div className="card-body">
-          <div className="d-flex">
-            <p className="fw-bold card-tittle flex-fill">{props.tittle}</p>
-            <p className="fw-bold">{props.price}</p>
-          </div>
-          <div className="d-flex">
-            <p className="card-text flex-fill">{props.provider}</p>
-            <p className="card-text">{props.stars}</p>
-          </div>
-          <div className="d-flex">
-            <div
-              className="btn btn-primary btn-sm flex-fill"
-              onClick={susbtractProduct}
-            >
-              -
-            </div>
-            <div className="flex-fill text-center">{cont}</div>
-            <div
-              className="btn btn-primary btn-sm flex-fill"
-              onClick={addProduct}
-            >
-              +
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container>
+      <ProductCard>
+        <Imgcontainer>
+          <CardImg src={props.imagen} alt={props.alt} />
+        </Imgcontainer>
+        <Cardbody>
+          <Flex>
+            <Id>{props.Id}</Id>
+            <Title>{props.title}</Title>
+          </Flex>
+          <Flex>
+            <Flexed>
+              <p>{`${props.price}USD`}</p>
+            </Flexed>
+            <Flexed>
+              <Flexend>
+                <p>{`${props.stars}/5`}</p>
+              </Flexend>
+            </Flexed>
+          </Flex>
+          <ButtonContainer>
+            <Button>
+              <AiOutlineShoppingCart />
+            </Button>
+          </ButtonContainer>
+        </Cardbody>
+      </ProductCard>
+    </Container>
   );
 }

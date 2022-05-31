@@ -7,10 +7,10 @@ export default function Header(props) {
     color: #fff;
     font-size: 1.25rem;
     text-decoration: none;
-    margin-top:20px;
   }
   `;
   const HoverLink = styledComponents.p`{
+    margin-top:6px;
      ${Link}:hover & {
     cursor: pointer;
     color:#fff
@@ -23,36 +23,70 @@ export default function Header(props) {
     color: #fff;
   }
   `;
+  const Ul = styledComponents.ul`
+    display:flex;
+    flex:1;
+    flex-direction:row;
+    list-style: none;
+  `;
+  const Li = styledComponents.li`
+    margin: 0 0.5rem 0 0.5rem;
+    justify-content: space-between;
+  `;
+
+  const Nav = styledComponents.nav`
+    display:flex;
+    flex:1;
+    margin: 0.75rem 3rem 0 0;
+    vertical-align: middle;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+`;
+  const Title = styledComponents.p`
+  margin: 0.5rem 0 0.5rem 3rem;
+  font-weight:700;
+  font-size:2rem;
+`;
+  const Flex = styledComponents.div`
+    flex:3.5;
+`;
+
   return (
     <>
       <Header>
-        <div className="flex-fill">
-          <p className="fw-bold fs-2 ms-5 my-2">Marketplace</p>
-        </div>
-        <nav className="align-middle flex-row-reverse me-5 mt-3 nav">
-          <ul className="d-flex flex-row">
-            <li className="justify-content-between mx-2">
+        <Flex>
+          <Title>Marketplace</Title>
+        </Flex>
+        <Nav>
+          <Ul>
+            <Li>
               <Link href="blank">
                 <HoverLink>Inicio</HoverLink>
               </Link>
-            </li>
-            <li className="justify-content-between mx-2">
+            </Li>
+            <Li>
               <Link href="blank">
                 <HoverLink>Otra sección</HoverLink>
               </Link>
-            </li>
-            <li className="justify-content-between mx-2">
+            </Li>
+            <Li>
               <Link href="blank">
                 <HoverLink>
                   <BsCart2 />
                 </HoverLink>
               </Link>
-            </li>
-            <li className="fs-5 mx-2">
-              <BiUserCircle />
-            </li>
-          </ul>
-        </nav>
+            </Li>
+            <Li>
+              <Link>
+                <HoverLink>
+                  <BiUserCircle />
+                </HoverLink>
+              </Link>
+            </Li>
+          </Ul>
+        </Nav>
       </Header>
     </>
   );
