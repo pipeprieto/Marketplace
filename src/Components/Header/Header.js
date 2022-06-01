@@ -64,19 +64,19 @@ export default function Header(props) {
         <Nav>
           <Ul>
             <Li>
-              <Link href="blank">
+              <Link to="/">
                 <HoverLink>Inicio</HoverLink>
               </Link>
             </Li>
             <Li>
-              <Link href="blank">
+              <Link to="/cart">
                 <HoverLink>
                   <BsCart2 />
                 </HoverLink>
               </Link>
             </Li>
             <Li>
-              <Link href="blank">
+              <Link to="blank">
                 <HoverLink>
                   <BiLogOut />
                 </HoverLink>

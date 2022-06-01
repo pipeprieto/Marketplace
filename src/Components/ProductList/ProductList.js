@@ -3,7 +3,7 @@ import { Columns, Heading, Pagination } from "react-bulma-components";
 import "bulma/css/bulma.min.css";
 import Card from "../Card/Card";
 
-export default function ProductList(props) {
+const ProductList = (props) => {
   //Local storage
   //let productStorage = window.localStorage.getItem("productos");
 
@@ -60,3 +60,5 @@ export default function ProductList(props) {
     </>
   );
 }
+
+export default ProductList;
