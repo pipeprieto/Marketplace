@@ -1,8 +1,10 @@
 import { BsCart2 } from "react-icons/bs";
-import { BiUserCircle } from "react-icons/bi";
+import { BiLogOut } from "react-icons/bi";
 import styledComponents from "styled-components";
+import "bulma/css/bulma.min.css";
 
 export default function Header(props) {
+  //Styled Components
   const Link = styledComponents.a`{
     color: #fff;
     font-size: 1.25rem;
@@ -37,7 +39,7 @@ export default function Header(props) {
   const Nav = styledComponents.nav`
     display:flex;
     flex:1;
-    margin: 0.75rem 3rem 0 0;
+    margin: 0.75rem 0 0 0;
     vertical-align: middle;
     flex-direction: row-reverse;
     flex-wrap: wrap;
@@ -50,7 +52,7 @@ export default function Header(props) {
   font-size:2rem;
 `;
   const Flex = styledComponents.div`
-    flex:3.5;
+    flex:5.5;
 `;
 
   return (
@@ -68,20 +70,15 @@ export default function Header(props) {
             </Li>
             <Li>
               <Link href="blank">
-                <HoverLink>Otra sección</HoverLink>
-              </Link>
-            </Li>
-            <Li>
-              <Link href="blank">
                 <HoverLink>
                   <BsCart2 />
                 </HoverLink>
               </Link>
             </Li>
             <Li>
-              <Link>
+              <Link href="blank">
                 <HoverLink>
-                  <BiUserCircle />
+                  <BiLogOut />
                 </HoverLink>
               </Link>
             </Li>

@@ -16,6 +16,7 @@ export default function ProductList(props) {
           var newProducts = [];
           for (let i = 0; i < data.length; i++) {
             newProducts[i] = {
+              provider: props.provider,
               id: data[i].id,
               title: data[i].title,
               image: data[i].image,
@@ -55,7 +56,7 @@ export default function ProductList(props) {
           );
         })}
       </Columns>
-      <Pagination />
+      <Pagination total={1} align="center" rounded={true} autoHide={false} />
     </>
   );
 }
