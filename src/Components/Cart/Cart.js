@@ -1,37 +1,84 @@
-import React from "react";
+
 import CardItem from "./CartItem";
 import imagenn from "../../images/prueba.jpeg";
 import styled from "styled-components";
+import { useAlert } from 'react-alert';
+import React, {useState, useEffect} from 'react';
 
-class Cart extends React.Component {
 
-    state = {
-        items :[
-          {
-            tittle : 'Nike',
-            imagen : imagenn,
-            stars: 5,
-            price: '5.00',
-            provider:'Nike'
-          },
-          {
-            tittle : 'Nike',
-            imagen : imagenn,
-            stars: 5,
-            price: '5.00',
-            provider:'Nike'
-          },
-          {
-            tittle : 'Nike',
-            imagen : imagenn,
-            stars: 5,
-            price: '5.00',
-            provider:'Nike'
-          },
-      ]
+const Cart = () => {
+
+  const [items, setItems] = useState(
+    [
+      {
+        tittle : 'Nike',
+        imagen : imagenn,
+        stars: 5,
+        price: 5.00,
+        provider:'Nike',
+        cantidad:1
+      },
+      {
+        tittle : 'Nike2',
+        imagen : imagenn,
+        stars: 5,
+        price: 5.00,
+        provider:'Nike',
+        cantidad:2
+      },
+      {
+        tittle : 'Nike3',
+        imagen : imagenn,
+        stars: 5,
+        price: 5.00,
+        provider:'Nike',
+        cantidad:1
+      },
+  ]
+  );
+
+  useEffect(() => {
+    console.log(items)
+},[items])
+
+  const [totalp, setTotal] = useState(0); 
+
+  const alert = useAlert();
+
+
+
+   const total = (parametro)  => {
+
+    console.log(items);
+     
+      items.forEach(item => {
+        if(item.tittle===parametro.tittle){
+          item.cantidad=parametro.cantidad
+        }
+      });
+
+      setItems(items);
+    
+      var totalPrecio = 0;
+    
+      items.forEach(item => {
+        totalPrecio = totalPrecio + (item.cantidad * item.price)
+      });
+      console.log('Nueva cantidad de este producto es: ',parametro.cantidad)
+      
+      setTotal(totalPrecio);
+      console.log('el nuevo total del carrito es :',totalPrecio)
+      
+      console.log(items)
     }
 
-  render(){
+    const checkOut = () =>{
+      alert.show('Compra exitosa');
+      setItems([]);
+      setTotal(0);
+    }
+
+  
       return (
     <>
       <Container>
@@ -40,13 +87,13 @@ class Cart extends React.Component {
                 <Top>
                     <TopButton>CONTINUE SHOPPING</TopButton>
                     <TopTexts>
-                        <TopText>Shopping Bag(2)</TopText>
+                        <TopText>Shopping Bag({items.length})</TopText>
                     </TopTexts>
                     
                 </Top>
                 <Bottom>
-                    <Info>
-                        {this.state.items.map((item) => (
+                    <Info onLoad={total}>
+                        {items.map((item) => (
                             <CardItem
                                 tittle = {item.tittle}
                                 imagen = {item.imagen}
@@ -54,6 +101,8 @@ class Cart extends React.Component {
                                 stars = {item.stars}
                                 price = {item.price}
                                 provider ={item.provider}
+                                bus = {total}
+                                cantidad = {item.cantidad}
                             />
                         ))}
                     </Info>
@@ -61,16 +110,15 @@ class Cart extends React.Component {
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryItem type="total">
                         <SummaryItemText>Total</SummaryItemText>
-                        <SummaryItemPrice>$ 80</SummaryItemPrice>
+                        <SummaryItemPrice>$ {totalp}</SummaryItemPrice>
                         </SummaryItem>
-                        <Button>CHECKOUT NOW</Button>
+                        <Button onClick={()=>{checkOut()}}>CHECKOUT NOW</Button>
                     </Summary>
                 </Bottom>
           </Wrapper>
       </Container>
     </>
   );
-  }
   
 }
 export default Cart;

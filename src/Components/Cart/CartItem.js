@@ -1,19 +1,56 @@
-import { useState } from "react";
+
 import styled from "styled-components";
+import React, {useState, useEffect} from 'react';
 
 
-export default function CardItem(props) {
-    const [cont, setState] = useState(0);
+export default function CardItem(props){
+
+  const [cant, setCant] = useState(props.cantidad);
+
+   
   
-    const addProduct = () => {
-      setState(cont + 1);
-    };
+   const  agregar = () => {
+
+    const nueva_cantidad = cant + 1
+
+
+    setCant(nueva_cantidad);
+
+    props.bus({
+        tittle:props.tittle,
+        cantidad: nueva_cantidad,
+    })
+
+
+  }
+
+  const quitar = () => {
+
+      var nueva_cantidad;
+      if(cant >0){
+         nueva_cantidad = cant - 1
+      }else{
+        nueva_cantidad=0;
+      }
+      
+
+      setCant(nueva_cantidad);
+
+      props.bus({
+          tittle:props.tittle,
+          cantidad: nueva_cantidad,
+      })
+
+      
+
+  }
+  useEffect(() => {
+    console.log(cant)
+},[cant])
   
-    const susbtractProduct = () => {
-      setState(cont - 1);
-    };
-  
-    return (
+
+    
+      return (
         <Product>
         <ProductDetail>
           <Image src={props.imagen} alt={props.alt} />
@@ -31,15 +68,18 @@ export default function CardItem(props) {
         </ProductDetail>
         <PriceDetail>
           <ProductAmountContainer>
-            <Button onClick={susbtractProduct}>-</Button>
-            <ProductAmount>{cont}</ProductAmount>
-            <Button onClick={addProduct}>+</Button>
+            <Button onClick={quitar}>-</Button>
+            <ProductAmount>{props.cantidad}</ProductAmount>
+            <Button onClick={agregar}>+</Button>
           </ProductAmountContainer>
           <ProductPrice>$ {props.price}</ProductPrice>
         </PriceDetail>
       </Product>
     );
+    
+    
   }
+
 
 
 const Button = styled.button`

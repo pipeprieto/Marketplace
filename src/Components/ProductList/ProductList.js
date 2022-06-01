@@ -2,6 +2,7 @@ import { Columns } from "react-bulma-components";
 import "bulma/css/bulma.min.css";
 import Card from "../Card/Card";
 import imagen from "../../images/prueba.jpeg";
+
 export default function ProductList(props) {
   //const data = fetch("");
   const columns = {
