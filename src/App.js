@@ -34,14 +34,25 @@ const App = () => {
   }
  ]);
 
+ const handleAddProduct = (product) => {
+   const ProductExist = cartItems.find((item) => item.tittle===product.tittle);
+   if(ProductExist){
+     setCartItems(cartItems.map((item) => item.tittle === product.tittle ?
+     {...ProductExist, cantidad: ProductExist.cantidad + 1} : item)
+     );
+   }else{
+     setCartItems([...cartItems, {...product,cantidad:1}]);
+   }
+ }
+
   return (
     <div className="App">
       <Router>
         <Fragment>
           <Header />
           <Routes>
-          <Route exact path='/' element={<ProductList/>}/>
-          <Route exact path='/cart' element={<Cart cartItems={cartItems}/>}/>
+          <Route exact path='/' element={<ProductList handleAddProduct={handleAddProduct}/>}/>
+          <Route exact path='/cart' element={<Cart cartItems={cartItems} handleAddProduct={handleAddProduct}/>}/>
           </Routes>
         </Fragment> 
       </Router>

@@ -4,12 +4,15 @@ import { useAlert } from 'react-alert';
 import React, {useState, useEffect} from 'react';
 
 
-const Cart = ({cartItems}) => {
+const Cart = ({cartItems,handleAddProduct}) => {
 
+
+  const alert = useAlert();
 
     const checkOut = () =>{
       alert.show('Compra exitosa');
     }
+
 
   
       return (
