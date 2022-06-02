@@ -1,7 +1,9 @@
 
 import styled from "styled-components";
 import { useAlert } from 'react-alert';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import { Link } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
 
 
 const Cart = ({cartItems,handleAddProduct,handleRemoveProduct,handleCartClearance}) => {
@@ -21,7 +23,8 @@ const Cart = ({cartItems,handleAddProduct,handleRemoveProduct,handleCartClearanc
           <Wrapper>
                 <Title>YOUR BAG</Title>
                 <Top>
-                    <TopButton>CONTINUE SHOPPING</TopButton>
+                  <Link to="/"><TopButton>CONTINUE SHOPPING</TopButton></Link>
+                    
                     <TopTexts>
                         <TopText>Shopping Bag({cartItems.length})</TopText>
                     </TopTexts>
