@@ -1,23 +1,12 @@
 import { BsCart2 } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import styledComponents from "styled-components";
+import { Link } from "react-router-dom";
 import "bulma/css/bulma.min.css";
 
 export default function Header(props) {
   //Styled Components
-  const Link = styledComponents.a`{
-    color: #fff;
-    font-size: 1.25rem;
-    text-decoration: none;
-  }
-  `;
-  const HoverLink = styledComponents.p`{
-    margin-top:6px;
-     ${Link}:hover & {
-    cursor: pointer;
-    color:#fff
-  }
-  }`;
+  
   const Header = styledComponents.header`{
     background-color:#0d6efd;
     display:flex;
@@ -34,6 +23,7 @@ export default function Header(props) {
   const Li = styledComponents.li`
     margin: 0 0.5rem 0 0.5rem;
     justify-content: space-between;
+    color:white;
   `;
 
   const Nav = styledComponents.nav`
@@ -65,21 +55,21 @@ export default function Header(props) {
           <Ul>
             <Li>
               <Link to="/">
-                <HoverLink>Inicio</HoverLink>
+                Inicio
               </Link>
             </Li>
             <Li>
               <Link to="/cart">
-                <HoverLink>
+                
                   <BsCart2 />
-                </HoverLink>
+                
               </Link>
             </Li>
             <Li>
               <Link to="blank">
-                <HoverLink>
+                
                   <BiLogOut />
-                </HoverLink>
+                
               </Link>
             </Li>
           </Ul>
