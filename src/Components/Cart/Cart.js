@@ -6,16 +6,7 @@ import { Link } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 
 
-const Cart = ({cartItems,handleAddProduct,handleRemoveProduct,handleCartClearance}) => {
-
-
-  const totalPrice = cartItems.reduce((price,item) => price + item.cantidad * item.price, 0);
-
-  const alert = useAlert();
-
-    const checkOut = () =>{
-      alert.show('Compra exitosa');
-    }
+const Cart = ({cartItems,handleAddProduct,handleRemoveProduct,handleCartClearance,totalPrice}) => {
 
       return (
     <>
@@ -66,7 +57,8 @@ const Cart = ({cartItems,handleAddProduct,handleRemoveProduct,handleCartClearanc
                         <SummaryItemText>Total</SummaryItemText>
                         <SummaryItemPrice>$ {totalPrice}</SummaryItemPrice>
                         </SummaryItem>
-                        <Button onClick={()=>{checkOut()}}>CHECKOUT NOW</Button>
+                        <Link to="/checkout"><Button>CHECKOUT NOW</Button></Link>
+                        
                     </Summary>
                 </Bottom>
           </Wrapper>

@@ -4,6 +4,7 @@ import React, {Fragment, useState} from 'react';
 import ProductList from "./Components/ProductList/ProductList";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Cart from "./Components/Cart/Cart"
+import CheckOut from "./Components/CheckOut/CheckOut"
 
 const App = () => {
 
@@ -35,6 +36,8 @@ const App = () => {
   }
 }
 
+const totalPrice = cartItems.reduce((price,item) => price + item.cantidad * item.price, 0);
+
 const handleCartClearance = () => {
   setCartItems([]);
 }
@@ -46,7 +49,8 @@ const handleCartClearance = () => {
           <Header />
           <Routes>
           <Route exact path='/' element={<ProductList handleAddProduct={handleAddProduct} provider="N/A"/>}/>
-          <Route exact path='/cart' element={<Cart cartItems={cartItems} handleAddProduct={handleAddProduct} handleRemoveProduct={handleRemoveProduct} handleCartClearance={handleCartClearance}/>}/>
+          <Route exact path='/checkout' element={<CheckOut totalPrice={totalPrice} handleCartClearance={handleCartClearance}/>}/>
+          <Route exact path='/cart' element={<Cart cartItems={cartItems} handleAddProduct={handleAddProduct} handleRemoveProduct={handleRemoveProduct} handleCartClearance={handleCartClearance} totalPrice={totalPrice}/>}/>
           </Routes>
         </Fragment> 
       </Router>
