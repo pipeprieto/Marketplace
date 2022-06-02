@@ -7,37 +7,12 @@ import Cart from "./Components/Cart/Cart"
 
 const App = () => {
 
- const [cartItems,setCartItems] = useState([
-  {
-    tittle : 'Nike',
-    imagen : null,
-    stars: 5,
-    price: 5.00,
-    provider:'Nike',
-    cantidad:1
-  },
-  {
-    tittle : 'Nike2',
-    imagen : null,
-    stars: 5,
-    price: 5.00,
-    provider:'Nike',
-    cantidad:2
-  },
-  {
-    tittle : 'Nike3',
-    imagen : null,
-    stars: 5,
-    price: 5.00,
-    provider:'Nike',
-    cantidad:1
-  }
- ]);
+ const [cartItems,setCartItems] = useState([]);
 
  const handleAddProduct = (product) => {
-   const ProductExist = cartItems.find((item) => item.tittle===product.tittle);
+   const ProductExist = cartItems.find((item) => item.id===product.id);
    if(ProductExist){
-     setCartItems(cartItems.map((item) => item.tittle === product.tittle ?
+     setCartItems(cartItems.map((item) => item.id === product.id ?
      {...ProductExist, cantidad: ProductExist.cantidad + 1} : item)
      );
    }else{
@@ -45,14 +20,33 @@ const App = () => {
    }
  }
 
+ const handleRemoveProduct = (product) => {
+  const ProductExist = cartItems.find((item) => item.id===product.id);
+  if(ProductExist.cantidad===1){
+    setCartItems(cartItems.filter((item) => item.id !== product.id ));
+  }else{
+    setCartItems(
+      cartItems.map((item) => 
+      item.id === product.id 
+      ? {...ProductExist, cantidad: ProductExist.cantidad-1} 
+      : item 
+      )
+    );
+  }
+}
+
+const handleCartClearance = () => {
+  setCartItems([]);
+}
+
   return (
     <div className="App">
       <Router>
         <Fragment>
           <Header />
           <Routes>
-          <Route exact path='/' element={<ProductList handleAddProduct={handleAddProduct}/>}/>
-          <Route exact path='/cart' element={<Cart cartItems={cartItems} handleAddProduct={handleAddProduct}/>}/>
+          <Route exact path='/' element={<ProductList handleAddProduct={handleAddProduct} provider="N/A"/>}/>
+          <Route exact path='/cart' element={<Cart cartItems={cartItems} handleAddProduct={handleAddProduct} handleRemoveProduct={handleRemoveProduct} handleCartClearance={handleCartClearance}/>}/>
           </Routes>
         </Fragment> 
       </Router>

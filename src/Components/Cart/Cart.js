@@ -4,8 +4,10 @@ import { useAlert } from 'react-alert';
 import React, {useState, useEffect} from 'react';
 
 
-const Cart = ({cartItems,handleAddProduct}) => {
+const Cart = ({cartItems,handleAddProduct,handleRemoveProduct,handleCartClearance}) => {
 
+
+  const totalPrice = cartItems.reduce((price,item) => price + item.cantidad * item.price, 0);
 
   const alert = useAlert();
 
@@ -13,8 +15,6 @@ const Cart = ({cartItems,handleAddProduct}) => {
       alert.show('Compra exitosa');
     }
 
-
-  
       return (
     <>
       <Container>
@@ -25,6 +25,7 @@ const Cart = ({cartItems,handleAddProduct}) => {
                     <TopTexts>
                         <TopText>Shopping Bag({cartItems.length})</TopText>
                     </TopTexts>
+                    <ButtonClear onClick={() => handleCartClearance()}>Clear</ButtonClear>
                     
                 </Top>
                 <Bottom>
@@ -32,13 +33,13 @@ const Cart = ({cartItems,handleAddProduct}) => {
                         {cartItems.map((item) => (
                             <Product>
                             <ProductDetail>
-                              <Image src={item.imagen} alt={item.alt} />
+                              <Image src={item.image} alt={item.alt} />
                               <Details>
                                 <ProductName>
-                                  <b>Product:</b> {item.tittle}
+                                  <b>Product:</b> {item.title}
                                 </ProductName>
                                 <ProductStars>
-                                    <b>Stars:</b> {item.stars}
+                                    <b>Stars:</b> {item.rate}
                                 </ProductStars>
                                 <ProductProvider>
                                 <b>Provider:</b> {item.provider}
@@ -47,9 +48,9 @@ const Cart = ({cartItems,handleAddProduct}) => {
                             </ProductDetail>
                             <PriceDetail>
                               <ProductAmountContainer>
-                                <ButtonItem onClick={null}>-</ButtonItem>
+                                <ButtonItem onClick={() => handleRemoveProduct(item)}>-</ButtonItem>
                                 <ProductAmount>{item.cantidad}</ProductAmount>
-                                <ButtonItem onClick={null}>+</ButtonItem>
+                                <ButtonItem onClick={() => handleAddProduct(item)}>+</ButtonItem>
                               </ProductAmountContainer>
                               <ProductPrice>$ {item.price}</ProductPrice>
                             </PriceDetail>
@@ -60,7 +61,7 @@ const Cart = ({cartItems,handleAddProduct}) => {
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryItem type="total">
                         <SummaryItemText>Total</SummaryItemText>
-                        <SummaryItemPrice>$ {0}</SummaryItemPrice>
+                        <SummaryItemPrice>$ {totalPrice}</SummaryItemPrice>
                         </SummaryItem>
                         <Button onClick={()=>{checkOut()}}>CHECKOUT NOW</Button>
                     </Summary>
@@ -161,6 +162,13 @@ const ButtonItem = styled.button`
   background-color: #0d6efd;
   color: white;
   font-weight: 1000;
+  border: 0;
+`;
+
+const ButtonClear = styled.button`
+  width: 80px;
+  background-color: #0d6efd;
+  color: white;
   border: 0;
 `;
 

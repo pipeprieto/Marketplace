@@ -3,8 +3,9 @@ import { Columns, Heading, Pagination } from "react-bulma-components";
 import "bulma/css/bulma.min.css";
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useAlert } from 'react-alert';
 
-const ProductList = ({props,handleAddProduct}) => {
+const ProductList = ({provider,handleAddProduct}) => {
   //Local storage
   //let productStorage = window.localStorage.getItem("productos");
 
@@ -17,7 +18,7 @@ const ProductList = ({props,handleAddProduct}) => {
           var newProducts = [];
           for (let i = 0; i < data.length; i++) {
             newProducts[i] = {
-              provider: props.provider,
+              provider: provider,
               id: data[i].id,
               title: data[i].title,
               image: data[i].image,
@@ -36,6 +37,13 @@ const ProductList = ({props,handleAddProduct}) => {
         console.log(err);
       });
   }, []);
+
+  const alert = useAlert();
+
+  const addToCart = (prod) =>{
+    alert.show('Se añadio al carro correctamente');
+    handleAddProduct(prod);
+  }
 
   return (
     <>
@@ -64,7 +72,7 @@ const ProductList = ({props,handleAddProduct}) => {
                     </Flexed>
                   </Flex>
                   <ButtonContainer>
-                    <Button>
+                    <Button onClick={() => addToCart(prod)}>
                       <AiOutlineShoppingCart />
                     </Button>
                   </ButtonContainer>
