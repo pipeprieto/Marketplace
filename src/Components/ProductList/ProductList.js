@@ -56,7 +56,12 @@ export default function ProductList(props) {
           );
         })}
       </Columns>
-      <Pagination total={1} align="center" rounded={true} autoHide={false} />
+      <Pagination
+        total={Math.ceil(product.length / 20)}
+        align="center"
+        rounded={true}
+        autoHide={false}
+      />
     </>
   );
 }
