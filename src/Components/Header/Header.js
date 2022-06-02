@@ -1,6 +1,7 @@
 import { BsCart2 } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import styledComponents from "styled-components";
+import { Link } from "react-router-dom";
 import "bulma/css/bulma.min.css";
 import Burger from "../BurgerMenu/Burger";
 
@@ -8,19 +9,7 @@ export default function Header(props) {
   //Variable que guarda el tamaño de la pantalla
   var screen = window.innerWidth;
   //Styled Components
-  const Link = styledComponents.a`{
-    color: #fff;
-    font-size: 1.25rem;
-    text-decoration: none;
-  }
-  `;
-  const HoverLink = styledComponents.p`{
-    margin-top:6px;
-     ${Link}:hover & {
-    cursor: pointer;
-    color:#fff
-  }
-  }`;
+  
   const Header = styledComponents.header`{
     background-color:#0d6efd;
     display:flex;
@@ -37,6 +26,7 @@ export default function Header(props) {
   const Li = styledComponents.li`
     margin: 0 0.5rem 0 0.5rem;
     justify-content: space-between;
+    color:white;
   `;
 
   const Nav = styledComponents.nav`
@@ -105,49 +95,29 @@ export default function Header(props) {
         <Flex>
           <Title>Marketplace</Title>
         </Flex>
-        <Burger>
-          <NavBlock>
-            <ul>
-              <li>
-                <a>Inicio</a>
-              </li>
-              <li>
-                <a>
+        <Nav>
+          <Ul>
+            <Li>
+              <Link to="/">
+                Inicio
+              </Link>
+            </Li>
+            <Li>
+              <Link to="/cart">
+                
                   <BsCart2 />
-                </a>
-              </li>
-              <li>
-                <a>
-                  Cerrar Sesión
+                
+              </Link>
+            </Li>
+            <Li>
+              <Link to="blank">
+                
                   <BiLogOut />
-                </a>
-              </li>
-            </ul>
-          </NavBlock>
-        </Burger>
-        {/* <Nav>
-        <Ul>
-          <Li>
-            <Link href="blank">
-              <HoverLink>Inicio</HoverLink>
-            </Link>
-          </Li>
-          <Li>
-            <Link href="blank">
-              <HoverLink>
-                <BsCart2 />
-              </HoverLink>
-            </Link>
-          </Li>
-          <Li>
-            <Link href="blank">
-              <HoverLink>
-                <BiLogOut />
-              </HoverLink>
-            </Link>
-          </Li>
-        </Ul>
-      </Nav> */}
+                
+              </Link>
+            </Li>
+          </Ul>
+        </Nav>
       </Header>
     );
   }
