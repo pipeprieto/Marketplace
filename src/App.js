@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Cart from "./Components/Cart/Cart";
 import CheckOut from "./Components/CheckOut/CheckOut";
 import ProductForm from "./Components/Form/ProductForm";
+import Login from "./Components/LogIn/LogIn";
+import SignUp from "./Components/SignUp/SignUp";
 import { data } from "./product-data";
 
 const App = () => {
@@ -77,6 +79,8 @@ const App = () => {
         <Fragment>
           <Header />
           <Routes>
+            <Route path="/sign-in" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
             <Route
               exact
               path="/"
