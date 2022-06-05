@@ -1,79 +1,88 @@
-
 import styled from "styled-components";
-import { useAlert } from 'react-alert';
-import React from 'react';
+import { useAlert } from "react-alert";
+import React from "react";
 import { Link } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 
-
-const Cart = ({cartItems,handleAddProduct,handleRemoveProduct,handleCartClearance,totalPrice}) => {
-
-      return (
+const Cart = ({
+  cartItems,
+  handleAddProduct,
+  handleRemoveProduct,
+  handleCartClearance,
+  totalPrice,
+}) => {
+  return (
     <>
       <Container>
-          <Wrapper>
-                <Title>YOUR BAG</Title>
-                <Top>
-                  <Link to="/"><TopButton>CONTINUE SHOPPING</TopButton></Link>
-                    
-                    <TopTexts>
-                        <TopText>Shopping Bag({cartItems.length})</TopText>
-                    </TopTexts>
-                    <ButtonClear onClick={() => handleCartClearance()}>Clear</ButtonClear>
-                    
-                </Top>
-                <Bottom>
-                    <Info >
-                        {cartItems.map((item) => (
-                            <Product>
-                            <ProductDetail>
-                              <Image src={item.image} alt={item.alt} />
-                              <Details>
-                                <ProductName>
-                                  <b>Product:</b> {item.title}
-                                </ProductName>
-                                <ProductStars>
-                                    <b>Stars:</b> {item.rate}
-                                </ProductStars>
-                                <ProductProvider>
-                                <b>Provider:</b> {item.provider}
-                                </ProductProvider>
-                              </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                              <ProductAmountContainer>
-                                <ButtonItem onClick={() => handleRemoveProduct(item)}>-</ButtonItem>
-                                <ProductAmount>{item.cantidad}</ProductAmount>
-                                <ButtonItem onClick={() => handleAddProduct(item)}>+</ButtonItem>
-                              </ProductAmountContainer>
-                              <ProductPrice>$ {item.price}</ProductPrice>
-                            </PriceDetail>
-                          </Product>
-                        ))}
-                    </Info>
-                    <Summary>
-                        <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-                        <SummaryItem type="total">
-                        <SummaryItemText>Total</SummaryItemText>
-                        <SummaryItemPrice>$ {totalPrice}</SummaryItemPrice>
-                        </SummaryItem>
-                        <Link to="/checkout"><Button>CHECKOUT NOW</Button></Link>
-                        
-                    </Summary>
-                </Bottom>
-          </Wrapper>
+        <Wrapper>
+          <Title>Tu carrito</Title>
+          <Top>
+            <Link to="/">
+              <TopButton>Continuar Comprando</TopButton>
+            </Link>
+
+            <TopTexts>
+              <TopText>Carrito de compras({cartItems.length})</TopText>
+            </TopTexts>
+            <ButtonClear onClick={() => handleCartClearance()}>
+              Clear
+            </ButtonClear>
+          </Top>
+          <Bottom>
+            <Info>
+              {cartItems.map((item) => (
+                <Product>
+                  <ProductDetail>
+                    <Image src={item.image} alt={item.alt} />
+                    <Details>
+                      <ProductName>
+                        <b>Producto:</b> {item.title}
+                      </ProductName>
+                      <ProductStars>
+                        <b>Calificación:</b> {item.rate}
+                      </ProductStars>
+                      <ProductProvider>
+                        <b>Proveedor:</b> {item.provider}
+                      </ProductProvider>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <ProductAmountContainer>
+                      <ButtonItem onClick={() => handleRemoveProduct(item)}>
+                        -
+                      </ButtonItem>
+                      <ProductAmount>{item.cantidad}</ProductAmount>
+                      <ButtonItem onClick={() => handleAddProduct(item)}>
+                        +
+                      </ButtonItem>
+                    </ProductAmountContainer>
+                    <ProductPrice>$ {item.price}</ProductPrice>
+                  </PriceDetail>
+                </Product>
+              ))}
+            </Info>
+            <Summary>
+              <SummaryTitle>Resumen</SummaryTitle>
+              <SummaryItem type="total">
+                <SummaryItemText>Total</SummaryItemText>
+                <SummaryItemPrice>$ {totalPrice}</SummaryItemPrice>
+              </SummaryItem>
+              <Link to="/checkout">
+                <Button>CHECKOUT</Button>
+              </Link>
+            </Summary>
+          </Bottom>
+        </Wrapper>
       </Container>
     </>
   );
-  
-}
+};
 export default Cart;
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 20px;
- 
 `;
 
 const Title = styled.h1`
@@ -98,9 +107,7 @@ const TopButton = styled.button`
   color: ${(props) => props.type === "filled" && "white"};
 `;
 
-const TopTexts = styled.div`
- 
-`;
+const TopTexts = styled.div``;
 const TopText = styled.span`
   text-decoration: underline;
   cursor: pointer;
@@ -110,14 +117,11 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
-  
-
 `;
 
 const Info = styled.div`
   flex: 3;
 `;
-
 
 const Summary = styled.div`
   flex: 1;
@@ -149,7 +153,7 @@ const Button = styled.button`
   background-color: #0d6efd;
   color: white;
   font-weight: 600;
-  border:0;
+  border: 0;
 `;
 
 const ButtonItem = styled.button`
@@ -175,7 +179,6 @@ const Product = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  
 `;
 
 const ProductDetail = styled.div`
@@ -196,7 +199,6 @@ const Details = styled.div`
 
 const ProductName = styled.span``;
 
-
 const PriceDetail = styled.div`
   flex: 1;
   display: flex;
@@ -214,11 +216,9 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
-  
 `;
 
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
-  
 `;

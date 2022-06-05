@@ -9,7 +9,7 @@ export default function Header(props) {
   //Variable que guarda el tamaño de la pantalla
   var screen = window.innerWidth;
   //Styled Components
-  
+
   const Header = styledComponents.header`{
     background-color:#0d6efd;
     display:flex;
@@ -45,7 +45,13 @@ export default function Header(props) {
   font-size:2rem;
   `;
   const Flex = styledComponents.div`
-    flex:5.5;
+    flex:4;
+  `;
+  const TextLink = styledComponents.p`
+  color:white;
+  margin-top:0.5rem;
+  font-size:1.2rem;
+  text-decoration:none;
   `;
 
   const NavBlock = styledComponents.nav`
@@ -66,22 +72,28 @@ export default function Header(props) {
           <Nav>
             <Ul>
               <Li>
-                <Link href="blank">
-                  <HoverLink>Inicio</HoverLink>
+                <Link to="/">
+                  <TextLink>Inicio</TextLink>
                 </Link>
               </Li>
               <Li>
-                <Link href="blank">
-                  <HoverLink>
+                <Link to="/add">
+                  <TextLink>Añadir</TextLink>
+                </Link>
+              </Li>
+              <Li>
+                <Link to="/cart">
+                  <TextLink>
                     <BsCart2 />
-                  </HoverLink>
+                  </TextLink>
                 </Link>
               </Li>
               <Li>
-                <Link href="blank">
-                  <HoverLink>
+                <Link to="blank">
+                  <TextLink>
                     <BiLogOut />
-                  </HoverLink>
+                    Salir
+                  </TextLink>
                 </Link>
               </Li>
             </Ul>
@@ -90,35 +102,30 @@ export default function Header(props) {
       </>
     );
   } else {
-    return (
-      <Header>
-        <Flex>
-          <Title>Marketplace</Title>
-        </Flex>
-        <Nav>
-          <Ul>
-            <Li>
-              <Link to="/">
-                Inicio
-              </Link>
-            </Li>
-            <Li>
-              <Link to="/cart">
-                
-                  <BsCart2 />
-                
-              </Link>
-            </Li>
-            <Li>
-              <Link to="blank">
-                
-                  <BiLogOut />
-                
-              </Link>
-            </Li>
-          </Ul>
-        </Nav>
-      </Header>
-    );
+    console.log("Tamaño de la pantalla es: " + screen);
+    // return (
+    //   <Header>
+    //     <Flex>
+    //       <Title>Marketplace</Title>
+    //     </Flex>
+    //     <Nav>
+    //       <Ul>
+    //         <Li>
+    //           <Link to="/">Inicio</Link>
+    //         </Li>
+    //         <Li>
+    //           <Link to="/cart">
+    //             <BsCart2 />
+    //           </Link>
+    //         </Li>
+    //         <Li>
+    //           <Link to="blank">
+    //             <BiLogOut />
+    //           </Link>
+    //         </Li>
+    //       </Ul>
+    //     </Nav>
+    //   </Header>
+    // );
   }
 }

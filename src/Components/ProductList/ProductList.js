@@ -3,9 +3,15 @@ import { Columns, Heading, Pagination } from "react-bulma-components";
 import "bulma/css/bulma.min.css";
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useAlert } from 'react-alert';
+import { useAlert } from "react-alert";
+import ProductForm from "../Form/ProductForm";
 
-const ProductList = ({provider,handleAddProduct}) => {
+const ProductList = ({
+  provider,
+  productList,
+  handleProductList,
+  handleAddProduct,
+}) => {
   //Local storage
   //let productStorage = window.localStorage.getItem("productos");
 
@@ -31,6 +37,7 @@ const ProductList = ({provider,handleAddProduct}) => {
             window.localStorage.getItem("productos")
           );
           setProduct(productStorage);
+          handleProductList(productStorage);
         });
       })
       .catch((err) => {
@@ -40,10 +47,17 @@ const ProductList = ({provider,handleAddProduct}) => {
 
   const alert = useAlert();
 
-  const addToCart = (prod) =>{
-    alert.show('Se añadio al carro correctamente');
+  const addToCart = (prod) => {
+    alert.show("Se añadio al carro correctamente");
     handleAddProduct(prod);
-  }
+  };
+
+  // useEffect(() => {
+  //   const updatedProductList = [productList, ...product];
+  //   alert.show("Producto añadido correctamente");
+  //   setProduct(updatedProductList);
+  //   handleProductList(updatedProductList);
+  // }, []);
 
   return (
     <>
@@ -83,83 +97,83 @@ const ProductList = ({provider,handleAddProduct}) => {
         })}
       </Columns>
       <Pagination
-        total={Math.ceil(product.length / 20)}
+        total={Math.ceil(product.length / 10)}
         align="center"
         rounded={true}
         autoHide={false}
       />
     </>
   );
-}
+};
 
 export default ProductList;
 
 const Id = styled.p`
-    display: none;
-  `;
-  
-  const ProductCard = styled.div`
-    width: 250px;
-    margin: auto;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
-      0 0 0 1px rgb(10 10 10 / 2%);
-    position: relative;
-    min-width: 0;
-    max-width: 100%;
-    word-wrap: break-word;
-  `;
-  const Imgcontainer = styled.div`
-    margin: auto;
-    width: 50%;
-  `;
-  const CardImg = styled.img`
-    text-align: center;
-    width: 150px;
-    height: 150px;
-  `;
-  const Cardbody = styled.div`
-    padding: 1rem 1rem;
-  `;
-  const Flex = styled.div`
-    display: flex;
-  `;
-  const Flexed = styled.p`
-    flex: 1;
-  `;
-  const Flexend = styled.p`
-    text-align: right;
-  `;
-  const Title = styled.p`
-    font-weight: bold;
-  `;
-  const ButtonContainer = styled.div`
-    margin: auto;
-  `;
-  const Button = styled.div`
-    display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    color: #fff;
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-    width: 80%;
-    margin-left: 10%;
-  `;
+  display: none;
+`;
+
+const ProductCard = styled.div`
+  width: 250px;
+  margin: auto;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  word-wrap: break-word;
+`;
+const Imgcontainer = styled.div`
+  margin: auto;
+  width: 50%;
+`;
+const CardImg = styled.img`
+  text-align: center;
+  width: 150px;
+  height: 150px;
+`;
+const Cardbody = styled.div`
+  padding: 1rem 1rem;
+`;
+const Flex = styled.div`
+  display: flex;
+`;
+const Flexed = styled.p`
+  flex: 1;
+`;
+const Flexend = styled.p`
+  text-align: right;
+`;
+const Title = styled.p`
+  font-weight: bold;
+`;
+const ButtonContainer = styled.div`
+  margin: auto;
+`;
+const Button = styled.div`
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  width: 80%;
+  margin-left: 10%;
+`;
