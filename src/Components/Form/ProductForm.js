@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function ProductForm({
   header,
   provider,
-  handleProdutList,
+  handleProductList,
   productList,
 }) {
   const [productAdded, setProduct] = useState({
@@ -39,7 +39,7 @@ export default function ProductForm({
     window.localStorage.setItem("productos", JSON.stringify(productList));
     let newProductList = JSON.parse(localStorage.getItem("productos"));
     console.log(newProductList);
-    handleProdutList(newProductList);
+    handleProductList(newProductList);
   }
 
   //Styled Components

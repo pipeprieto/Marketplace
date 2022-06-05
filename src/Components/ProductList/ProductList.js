@@ -1,49 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Columns, Heading, Pagination } from "react-bulma-components";
 import "bulma/css/bulma.min.css";
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAlert } from "react-alert";
-import ProductForm from "../Form/ProductForm";
 
-const ProductList = ({
-  provider,
-  productList,
-  handleProductList,
-  handleAddProduct,
-}) => {
-  //Local storage
-  //let productStorage = window.localStorage.getItem("productos");
-
-  //Consumo de la API de Productos usando Hooks
+const ProductList = ({ productList, handleAddProduct }) => {
   const [product, setProduct] = useState([]);
-  useEffect(() => {
-    fetch("Https://fakestoreapi.com/products")
-      .then((result) => {
-        result.json().then((data) => {
-          var newProducts = [];
-          for (let i = 0; i < data.length; i++) {
-            newProducts[i] = {
-              provider: provider,
-              id: data[i].id,
-              title: data[i].title,
-              image: data[i].image,
-              price: data[i].price,
-              rate: data[i].rating.rate,
-            };
-          }
-          window.localStorage.setItem("productos", JSON.stringify(newProducts));
-          let productStorage = JSON.parse(
-            window.localStorage.getItem("productos")
-          );
-          setProduct(productStorage);
-          handleProductList(productStorage);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+
+  const getData = () => {
+    setProduct(productList);
+  };
 
   const alert = useAlert();
 
@@ -51,13 +18,6 @@ const ProductList = ({
     alert.show("Se añadio al carro correctamente");
     handleAddProduct(prod);
   };
-
-  // useEffect(() => {
-  //   const updatedProductList = [productList, ...product];
-  //   alert.show("Producto añadido correctamente");
-  //   setProduct(updatedProductList);
-  //   handleProductList(updatedProductList);
-  // }, []);
 
   return (
     <>
