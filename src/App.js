@@ -6,16 +6,22 @@ import Cart from "./Components/Cart/Cart";
 import CheckOut from "./Components/CheckOut/CheckOut";
 import ProductForm from "./Components/Form/ProductForm";
 import { data } from "./product-data";
+// import {
+//   ContextProvider,
+//   Globalcontext,
+// } from "./Components/Context/Globalcontext";
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
   const [productList, setProductList] = useState([]);
-  const getData = () => {
-    console.log(data);
-    var newProducts = data;
+  // console.log(ContextProvider());
+  // const context = useContext(Globalcontext);
+  useEffect(() => {
+    var newProducts = [];
     for (let i = 0; i < data.length; i++) {
       newProducts[i] = {
         provider: "N/A", //Al momento de crear los usuarios especificar el proveedor usando props
+        key: data[i].id,
         id: data[i].id,
         title: data[i].title,
         image: data[i].image,
@@ -24,9 +30,9 @@ const App = () => {
       };
     }
     window.localStorage.setItem("productos", JSON.stringify(newProducts));
-    let productStorage = JSON.parse(window.localStorage.getItem("productos"));
-    setProductList(productStorage);
-  };
+    //setProductList(newProducts);
+  }, []);
+
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
     if (ProductExist) {
@@ -67,15 +73,24 @@ const App = () => {
   };
 
   const handleProductList = (products) => {
-    const updatedProducts = [products, ...productList];
+    let updatedProducts = JSON.parse(window.localStorage.getItem("productos"));
+    updatedProducts.push(products);
+    console.log(updatedProducts);
+    window.localStorage.setItem("productos", JSON.stringify(updatedProducts));
+
+    // let storage = JSON.parse(window.localStorage.getItem("productos"));
+    // storage.push(updatedProducts);
+    // window.localStorage.setItem("productos", JSON.stringify(storage));
     setProductList(updatedProducts);
   };
 
   return (
+    // <ContextProvider>
     <div className="App">
       <Router>
         <Fragment>
           <Header />
+
           <Routes>
             <Route
               exact
@@ -84,7 +99,6 @@ const App = () => {
                 <ProductList
                   provider="N/A"
                   handleAddProduct={handleAddProduct}
-                  productList={productList}
                 />
               }
             />
@@ -127,6 +141,7 @@ const App = () => {
         </Fragment>
       </Router>
     </div>
+    // </ContextProvider>
   );
 };
 

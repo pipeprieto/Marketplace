@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Columns, Heading, Pagination } from "react-bulma-components";
 import "bulma/css/bulma.min.css";
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAlert } from "react-alert";
 
-const ProductList = ({ productList, handleAddProduct }) => {
+const ProductList = ({ handleAddProduct }) => {
   const [product, setProduct] = useState([]);
 
-  const getData = () => {
-    setProduct(productList);
-  };
+  useEffect(() => {
+    let products = JSON.parse(window.localStorage.getItem("productos"));
+    console.log(products);
+    setProduct(products);
+  }, []);
 
   const alert = useAlert();
 
@@ -18,10 +20,9 @@ const ProductList = ({ productList, handleAddProduct }) => {
     alert.show("Se añadio al carro correctamente");
     handleAddProduct(prod);
   };
-
   return (
     <>
-      <Heading className="has-text-centered">{"ProductList"}</Heading>
+      <Heading className="has-text-centered">{"Productos "}</Heading>
       <Columns desktop={{ display: "flex" }}>
         {product.map((prod) => {
           return (
