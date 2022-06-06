@@ -1,19 +1,36 @@
 import React, { useEffect, useState } from "react";
 import "./LogIn.css";
+import loginService from "../../Services/login"
+import {
+    Routes,
+    Route,
+    Link,
+    useNavigate,
+} from 'react-router-dom';
 
 function LoginForm() {
 
-    const [userName, setUserName] = useState("");
+    const [user, setUser] = useState(null);
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
+
     const handleLogin = async () => {
-
-        let users = localStorage.getItem("users");
-
-        localStorage.setItem("userName", userName);
-
-
-
-
+        try {
+            const user = await loginService({
+                email,
+                password
+            })
+            if (user != null) {
+                navigate('/');
+                setUser(user)
+                setEmail('')
+                setPassword('')
+            }
+        } catch (error) {
+            console.log('Error credentials')
+        }
     };
 
     return (
@@ -140,12 +157,12 @@ function LoginForm() {
                                         Iniciar sesión en su cuenta
                                     </span>
                                     <div className="field padding-bottom--24">
-                                        <label htmlFor="text">Usuario</label>
+                                        <label htmlFor="text">Email</label>
                                         <input
                                             type="text"
                                             name="user"
                                             onChange={(e) => {
-                                                setUserName(e.target.value);
+                                                setEmail(e.target.value);
                                             }}
                                         />
                                     </div>

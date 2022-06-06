@@ -89,7 +89,7 @@ export default function Header(props) {
                 </Link>
               </Li>
               <Li>
-                <Link to="blank">
+                <Link to="/sign-in">
                   <TextLink>
                     <BiLogOut />
                     Salir
