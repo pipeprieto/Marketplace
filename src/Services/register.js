@@ -13,6 +13,7 @@ const register = async credentials => {
         return users;
     }else{
         let userStorage = JSON.parse(window.localStorage.getItem("users"));
+        console.log(credentials)
         userStorage.push({
             firstName: credentials.firstName,
             lastName: credentials.lastName,

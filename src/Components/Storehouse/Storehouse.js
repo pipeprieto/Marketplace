@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import "./Storehouse.css";
-import { data } from "../../product-data";
 import ModalDelete from "./modal/ModalDelP";
 import ModalEdit from "./modal/ModalEditP";
 
@@ -12,12 +11,12 @@ export default class Storehouse extends Component {
     openModal3: false
   };
   componentDidMount() {
-    //ROLE === Roles.CASHIER && this.props.history.push("/cashier");
+    
   }
 
   render() {
-    let productStorage = JSON.parse(window.localStorage.getItem("productos"))== null ? data : JSON.parse(window.localStorage.getItem("productos"));
-    
+    let productStorage = JSON.parse(window.localStorage.getItem("productos"));
+
     const handleOpenModal2 = () => {
       this.setState({ openModal2: true });
     };
@@ -62,7 +61,7 @@ export default class Storehouse extends Component {
                           <td>{item.title}</td>
                           <td>{item.price}</td>
                           <td>{item.category}</td>
-                          <td>{item.rating.rate}</td>
+                          <td>{item.rate}</td>
                         </tr>
                       ))}
                     </tbody>

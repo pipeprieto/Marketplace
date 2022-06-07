@@ -16,21 +16,18 @@ const SignUp = ({ usersList, handleAddUser }) => {
 
     const navigate = useNavigate();
 
-    const getData = () => {
-        
-    };
 
     const handleLogin = async (event) => {
         try {
 
             const user = await registerService({
-                firstName,
-                lastName,
-                email,
-                password
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
             })
             if (user != null) {
-                navigate('/sign-in');
+                navigate('/');
                 setFirstName('')
                 setLastName('')
                 setEmail('')
@@ -172,11 +169,17 @@ const SignUp = ({ usersList, handleAddUser }) => {
                                             type="text"
                                             className="form-control"
                                             placeholder="First name"
+                                            onChange={(e) => {
+                                                setFirstName(e.target.value);
+                                            }}
                                         />
                                     </div>
                                     <div className="mb-3">
                                         <label>Last name</label>
-                                        <input type="text" className="form-control" placeholder="Last name" />
+                                        <input type="text" className="form-control" placeholder="Last name" onChange={(e) => {
+                                                setLastName(e.target.value);
+                                            }}/>
+                                        
                                     </div>
                                     <div className="mb-3">
                                         <label>Email address</label>
@@ -184,6 +187,9 @@ const SignUp = ({ usersList, handleAddUser }) => {
                                             type="email"
                                             className="form-control"
                                             placeholder="Enter email"
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                            }}
                                         />
                                     </div>
                                     <div className="mb-3">
@@ -192,6 +198,9 @@ const SignUp = ({ usersList, handleAddUser }) => {
                                             type="password"
                                             className="form-control"
                                             placeholder="Enter password"
+                                            onChange={(e) => {
+                                                setPassword(e.target.value);
+                                            }}
                                         />
                                     </div>
                                     <div className="d-grid">

@@ -9,10 +9,6 @@ import {
 } from 'react-router-dom';
 
 function LoginForm() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const handleLogin = async () => {
-    let users = localStorage.getItem("users");
 
     const [user, setUser] = useState(null);
     const [email, setEmail] = useState("");
@@ -28,7 +24,7 @@ function LoginForm() {
             })
             console.log(user )
             if (Object.keys(user).length != 0) {
-                navigate('/product');
+                navigate('/productlist');
                 setUser(user)
                 setEmail('')
                 setPassword('')

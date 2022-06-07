@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "bulma/css/bulma.min.css";
 //import Burger from "../BurgerMenu/Burger";
 
-export default function Header(props) {
+export default function Header(handleCartClearance) {
   //Variable que guarda el tamaño de la pantalla
   var screen = window.innerWidth;
 
@@ -36,7 +36,7 @@ export default function Header(props) {
                 </Link>
               </Li>
               <Li>
-                <Link to="/sign-in">
+                <Link to="/" onClick={handleCartClearance}>
                   <TextLink>
                     <BiLogOut />
                     Salir

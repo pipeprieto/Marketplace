@@ -20,9 +20,9 @@ const ProductList = ({ handleAddProduct ,product,page}) => {
     <>
       <Heading className="has-text-centered">{"Productos "}</Heading>
       <Columns mobile={{ display: "block" }} desktop={{ display: "flex" }}>
-        {product.map((prod) => {
+        {product.map((prod , index) => {
           return (
-            <Columns.Column narrow={true} size={3}>
+            <Columns.Column narrow={true} size={3}  key={index}>
               <ProductCard>
                 <Imgcontainer>
                   <CardImg src={prod.image} alt={"Error"} />

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom";
 import "./Modal.css";
-import { data } from '../../../product-data';
 import editProduct from "../../../Services/edit";
 
 
@@ -16,7 +15,11 @@ export default function ModalEdit(props) {
     const EditCart = () => {
 
         if(price !== null){
-            editProduct(productId, price);
+            let credentials = {
+                id: productId,
+                price: price
+            }
+            editProduct(credentials);
         }
         
         props.onClose();

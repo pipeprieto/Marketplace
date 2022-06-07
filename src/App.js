@@ -6,9 +6,9 @@ import CheckOut from "./Components/CheckOut/CheckOut";
 import ProductForm from "./Components/Form/ProductForm";
 import Login from "./Components/LogIn/LogIn";
 import SignUp from "./Components/SignUp/SignUp";
-import Storehouse from "./Components/Storehouse/Storehouse";
 import { data } from "./product-data";
 import Products from "./Components/Products/Products";
+import Storehouse from "./Components/Storehouse/Storehouse";
 // import {
 //   ContextProvider,
 //   Globalcontext,
@@ -22,26 +22,29 @@ const App = () => {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
+    getData()
     let products = JSON.parse(window.localStorage.getItem("productos"));
-
     setProduct(products.slice(page - 1, page - 1 + 10));
     setTotalPages(Math.ceil(products.length / 10));
   }, []);
 
   const getData = () => {
     var newProducts = [];
-    for (let i = 0; i < data.length; i++) {
-      newProducts[i] = {
-        provider: "N/A", //Al momento de crear los usuarios especificar el proveedor usando props
-        key: data[i].id,
-        id: data[i].id,
-        title: data[i].title,
-        image: data[i].image,
-        price: data[i].price,
-        rate: data[i].rating.rate,
-      };
+    if(window.localStorage.getItem("productos") == null){
+      for (let i = 0; i < data.length; i++) {
+        newProducts[i] = {
+          provider: "N/A", //Al momento de crear los usuarios especificar el proveedor usando props
+          key: data[i].id,
+          id: data[i].id,
+          title: data[i].title,
+          image: data[i].image,
+          price: data[i].price,
+          rate: data[i].rating.rate,
+          category: data[i].category
+        };
+      }
+      window.localStorage.setItem("productos", JSON.stringify(newProducts));
     }
-    window.localStorage.setItem("productos", JSON.stringify(newProducts));
   };
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
@@ -101,13 +104,13 @@ const App = () => {
     // <ContextProvider>
     <div className="App">
       <Router>
-        <Fragment>
-          <Header />
+        <Fragment  >
+          <Header handleCartClearance={handleCartClearance}/>
 
           <Routes>
-            <Route path="/sign-in" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route exact path="/storehouse" element={<Storehouse />} />
+            <Route path="/storehouse" element={<Storehouse />} />
             <Route
               exact
               path="/productlist"
