@@ -17,7 +17,7 @@ const Cart = ({
         <Wrapper>
           <Title>Tu carrito</Title>
           <Top>
-            <Link to="/">
+            <Link to="/productlist">
               <TopButton>Continuar Comprando</TopButton>
             </Link>
 

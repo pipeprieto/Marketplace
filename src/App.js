@@ -1,6 +1,5 @@
 import Header from "./Components/Header/Header";
 import React, { Fragment, useState, useEffect } from "react";
-import ProductList from "./Components/ProductList/ProductList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Cart from "./Components/Cart/Cart";
 import CheckOut from "./Components/CheckOut/CheckOut";
@@ -9,16 +8,32 @@ import Login from "./Components/LogIn/LogIn";
 import SignUp from "./Components/SignUp/SignUp";
 import Storehouse from "./Components/Storehouse/Storehouse";
 import { data } from "./product-data";
+import Products from "./Components/Products/Products";
+// import {
+//   ContextProvider,
+//   Globalcontext,
+// } from "./Components/Context/Globalcontext";
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
   const [productList, setProductList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    let products = JSON.parse(window.localStorage.getItem("productos"));
+
+    setProduct(products.slice(page - 1, page - 1 + 10));
+    setTotalPages(Math.ceil(products.length / 10));
+  }, []);
+
   const getData = () => {
-    console.log(data);
-    var newProducts = data;
+    var newProducts = [];
     for (let i = 0; i < data.length; i++) {
       newProducts[i] = {
         provider: "N/A", //Al momento de crear los usuarios especificar el proveedor usando props
+        key: data[i].id,
         id: data[i].id,
         title: data[i].title,
         image: data[i].image,
@@ -27,8 +42,6 @@ const App = () => {
       };
     }
     window.localStorage.setItem("productos", JSON.stringify(newProducts));
-    let productStorage = JSON.parse(window.localStorage.getItem("productos"));
-    setProductList(productStorage);
   };
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
@@ -70,28 +83,42 @@ const App = () => {
   };
 
   const handleProductList = (products) => {
-    const updatedProducts = [products, ...productList];
+    let updatedProducts = JSON.parse(window.localStorage.getItem("productos"));
+    updatedProducts.push(products);
+    console.log(updatedProducts);
+    window.localStorage.setItem("productos", JSON.stringify(updatedProducts));
     setProductList(updatedProducts);
   };
 
+  const handleClick = (num) => {
+    setPage(num);
+    let products = JSON.parse(window.localStorage.getItem("productos"));
+
+    setProduct(products.slice(num * 10 - 10, num * 10));
+  };
+
   return (
+    // <ContextProvider>
     <div className="App">
       <Router>
         <Fragment>
           <Header />
+
           <Routes>
-            <Route path="/" element={<Login />} />
             <Route path="/sign-in" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route exact path="/storehouse" element={<Storehouse />} />
             <Route
               exact
-              path="/product"
+              path="/productlist"
               element={
-                <ProductList
+                <Products
                   provider="N/A"
                   handleAddProduct={handleAddProduct}
-                  productList={productList}
+                  handleClick={handleClick}
+                  page={page}
+                  totalPages={totalPages}
+                  product={product}
                 />
               }
             />
@@ -134,6 +161,7 @@ const App = () => {
         </Fragment>
       </Router>
     </div>
+    // </ContextProvider>
   );
 };
 

@@ -3,76 +3,23 @@ import { BiLogOut } from "react-icons/bi";
 import styledComponents from "styled-components";
 import { Link } from "react-router-dom";
 import "bulma/css/bulma.min.css";
-import Burger from "../BurgerMenu/Burger";
+//import Burger from "../BurgerMenu/Burger";
 
 export default function Header(props) {
   //Variable que guarda el tamaño de la pantalla
   var screen = window.innerWidth;
-  //Styled Components
-
-  const Header = styledComponents.header`{
-    background-color:#0d6efd;
-    display:flex;
-    flex-direction:row;
-    color: #fff;
-  }
-  `;
-  const Ul = styledComponents.ul`
-    display:flex;
-    flex:1;
-    flex-direction:row;
-    list-style: none;
-  `;
-  const Li = styledComponents.li`
-    margin: 0 0.5rem 0 0.5rem;
-    justify-content: space-between;
-    color:white;
-  `;
-
-  const Nav = styledComponents.nav`
-    display:flex;
-    flex:1;
-    margin: 0.75rem 0 0 0;
-    vertical-align: middle;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-  `;
-  const Title = styledComponents.p`
-  margin: 0.5rem 0 0.5rem 3rem;
-  font-weight:700;
-  font-size:2rem;
-  `;
-  const Flex = styledComponents.div`
-    flex:4;
-  `;
-  const TextLink = styledComponents.p`
-  color:white;
-  margin-top:0.5rem;
-  font-size:1.2rem;
-  text-decoration:none;
-  `;
-
-  const NavBlock = styledComponents.nav`
-  display:block;
-  background-color:#0d6efd; 
-  text-align:center;
-  width:100%;
-  height:auto;
-  `;
 
   if (screen > 420) {
     return (
       <>
-        <Header>
+        <Headercss>
           <Flex>
             <Title>Marketplace</Title>
           </Flex>
           <Nav>
             <Ul>
               <Li>
-                <Link to="/">
+                <Link to="/productlist">
                   <TextLink>Inicio</TextLink>
                 </Link>
               </Li>
@@ -98,7 +45,7 @@ export default function Header(props) {
               </Li>
             </Ul>
           </Nav>
-        </Header>
+        </Headercss>
       </>
     );
   } else {
@@ -129,3 +76,56 @@ export default function Header(props) {
     // );
   }
 }
+//Styled Components
+
+const Headercss = styledComponents.header`{
+    background-color:#0d6efd;
+    display:flex;
+    flex-direction:row;
+    color: #fff;
+  }
+  `;
+const Ul = styledComponents.ul`
+    display:flex;
+    flex:1;
+    flex-direction:row;
+    list-style: none;
+  `;
+const Li = styledComponents.li`
+    margin: 0 0.5rem 0 0.5rem;
+    justify-content: space-between;
+    color:white;
+  `;
+
+const Nav = styledComponents.nav`
+    display:flex;
+    flex:1;
+    margin: 0.75rem 0 0 0;
+    vertical-align: middle;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+  `;
+const Title = styledComponents.p`
+  margin: 0.5rem 0 0.5rem 3rem;
+  font-weight:700;
+  font-size:2rem;
+  `;
+const Flex = styledComponents.div`
+    flex:4;
+  `;
+const TextLink = styledComponents.p`
+  color:white;
+  margin-top:0.5rem;
+  font-size:1.2rem;
+  text-decoration:none;
+  `;
+
+// const NavBlock = styledComponents.nav`
+//   display:block;
+//   background-color:#0d6efd;
+//   text-align:center;
+//   width:100%;
+//   height:auto;
+//   `;
