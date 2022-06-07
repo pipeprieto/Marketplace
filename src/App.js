@@ -1,6 +1,6 @@
 import Header from "./Components/Header/Header";
 import React, { Fragment, useState, useEffect } from "react";
-import Products from "./Components/Page/Products";
+import ProductList from "./Components/ProductList/ProductList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Cart from "./Components/Cart/Cart";
 import CheckOut from "./Components/CheckOut/CheckOut";
@@ -16,9 +16,6 @@ import { data } from "./product-data";
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
   const [productList, setProductList] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [product, setProduct] = useState([]);
 
   const getData = () => {
     var newProducts = [];
@@ -34,12 +31,7 @@ const App = () => {
       };
     }
     window.localStorage.setItem("productos", JSON.stringify(newProducts));
-    setTotalPages(Math.ceil(newProducts.length / 10));
-    let products = JSON.parse(window.localStorage.getItem("productos"));
-    console.log(products);
-    setProduct(newProducts);
   };
-
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
     if (ProductExist) {
@@ -85,11 +77,8 @@ const App = () => {
     console.log(updatedProducts);
     window.localStorage.setItem("productos", JSON.stringify(updatedProducts));
     setProductList(updatedProducts);
-    setProduct(updatedProducts);
   };
-  const handleClick = (num) => {
-    setPage(num);
-  };
+
   return (
     // <ContextProvider>
     <div className="App">
@@ -104,12 +93,9 @@ const App = () => {
               exact
               path="/productlist"
               element={
-                <Products
+                <ProductList
                   provider="N/A"
                   handleAddProduct={handleAddProduct}
-                  totalPages={totalPages}
-                  handleClick={handleClick}
-                  product={product}
                 />
               }
             />
