@@ -1,16 +1,12 @@
-import { useState } from "react";
-import { Columns, Heading, Pagination } from "react-bulma-components";
+import { useEffect, useState } from "react";
+import { Columns, Heading } from "react-bulma-components";
 import "bulma/css/bulma.min.css";
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAlert } from "react-alert";
 
-const ProductList = ({ productList, handleAddProduct }) => {
-  const [product, setProduct] = useState([]);
-
-  const getData = () => {
-    setProduct(productList);
-  };
+const ProductList = ({ handleAddProduct ,product,page}) => {
+  
 
   const alert = useAlert();
 
@@ -19,10 +15,11 @@ const ProductList = ({ productList, handleAddProduct }) => {
     handleAddProduct(prod);
   };
 
+
   return (
     <>
-      <Heading className="has-text-centered">{"ProductList"}</Heading>
-      <Columns desktop={{ display: "flex" }}>
+      <Heading className="has-text-centered">{"Productos "}</Heading>
+      <Columns mobile={{ display: "block" }} desktop={{ display: "flex" }}>
         {product.map((prod) => {
           return (
             <Columns.Column narrow={true} size={3}>
@@ -56,12 +53,15 @@ const ProductList = ({ productList, handleAddProduct }) => {
           );
         })}
       </Columns>
-      <Pagination
+      {/* <Pagination
         total={Math.ceil(product.length / 10)}
         align="center"
         rounded={true}
         autoHide={false}
-      />
+        onChange={showProducts}
+        current={page}
+        showPrevNext={false}
+      ></Pagination> */}
     </>
   );
 };
@@ -117,7 +117,6 @@ const Button = styled.div`
   display: inline-block;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
