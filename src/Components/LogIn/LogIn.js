@@ -23,7 +23,7 @@ function LoginForm() {
                 password
             })
             if (user != null) {
-                navigate('/');
+                navigate('/product');
                 setUser(user)
                 setEmail('')
                 setPassword('')

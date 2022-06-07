@@ -83,7 +83,7 @@ const App = () => {
             <Route path="/sign-up" element={<SignUp />} />
             <Route
               exact
-              path="/"
+              path="/product"
               element={
                 <ProductList
                   provider="N/A"
