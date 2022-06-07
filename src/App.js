@@ -7,6 +7,7 @@ import CheckOut from "./Components/CheckOut/CheckOut";
 import ProductForm from "./Components/Form/ProductForm";
 import Login from "./Components/LogIn/LogIn";
 import SignUp from "./Components/SignUp/SignUp";
+import Storehouse from "./Components/Storehouse/Storehouse";
 import { data } from "./product-data";
 
 const App = () => {
@@ -79,8 +80,10 @@ const App = () => {
         <Fragment>
           <Header />
           <Routes>
+            <Route path="/" element={<Login />} />
             <Route path="/sign-in" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route exact path="/storehouse" element={<Storehouse />} />
             <Route
               exact
               path="/product"
