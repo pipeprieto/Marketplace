@@ -39,7 +39,6 @@ export default function Header(handleCartClearance) {
                 <Link to="/" onClick={handleCartClearance}>
                   <TextLink>
                     <BiLogOut />
-                    Salir
                   </TextLink>
                 </Link>
               </Li>
