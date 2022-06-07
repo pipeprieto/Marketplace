@@ -1,21 +1,15 @@
 import { BsCart2 } from "react-icons/bs";
-import { BiUserCircle } from "react-icons/bi";
+import { BiLogOut } from "react-icons/bi";
 import styledComponents from "styled-components";
+import { Link } from "react-router-dom";
+import "bulma/css/bulma.min.css";
+import Burger from "../BurgerMenu/Burger";
 
 export default function Header(props) {
-  const Link = styledComponents.a`{
-    color: #fff;
-    font-size: 1.25rem;
-    text-decoration: none;
-    margin-top:20px;
-  }
-  `;
-  const HoverLink = styledComponents.p`{
-     ${Link}:hover & {
-    cursor: pointer;
-    color:#fff
-  }
-  }`;
+  //Variable que guarda el tamaño de la pantalla
+  var screen = window.innerWidth;
+  //Styled Components
+
   const Header = styledComponents.header`{
     background-color:#0d6efd;
     display:flex;
@@ -23,37 +17,115 @@ export default function Header(props) {
     color: #fff;
   }
   `;
-  return (
-    <>
-      <Header>
-        <div className="flex-fill">
-          <p className="fw-bold fs-2 ms-5 my-2">Marketplace</p>
-        </div>
-        <nav className="align-middle flex-row-reverse me-5 mt-3 nav">
-          <ul className="d-flex flex-row">
-            <li className="justify-content-between mx-2">
-              <Link href="blank">
-                <HoverLink>Inicio</HoverLink>
-              </Link>
-            </li>
-            <li className="justify-content-between mx-2">
-              <Link href="blank">
-                <HoverLink>Otra sección</HoverLink>
-              </Link>
-            </li>
-            <li className="justify-content-between mx-2">
-              <Link href="blank">
-                <HoverLink>
-                  <BsCart2 />
-                </HoverLink>
-              </Link>
-            </li>
-            <li className="fs-5 mx-2">
-              <BiUserCircle />
-            </li>
-          </ul>
-        </nav>
-      </Header>
-    </>
-  );
+  const Ul = styledComponents.ul`
+    display:flex;
+    flex:1;
+    flex-direction:row;
+    list-style: none;
+  `;
+  const Li = styledComponents.li`
+    margin: 0 0.5rem 0 0.5rem;
+    justify-content: space-between;
+    color:white;
+  `;
+
+  const Nav = styledComponents.nav`
+    display:flex;
+    flex:1;
+    margin: 0.75rem 0 0 0;
+    vertical-align: middle;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+  `;
+  const Title = styledComponents.p`
+  margin: 0.5rem 0 0.5rem 3rem;
+  font-weight:700;
+  font-size:2rem;
+  `;
+  const Flex = styledComponents.div`
+    flex:4;
+  `;
+  const TextLink = styledComponents.p`
+  color:white;
+  margin-top:0.5rem;
+  font-size:1.2rem;
+  text-decoration:none;
+  `;
+
+  const NavBlock = styledComponents.nav`
+  display:block;
+  background-color:#0d6efd; 
+  text-align:center;
+  width:100%;
+  height:auto;
+  `;
+
+  if (screen > 420) {
+    return (
+      <>
+        <Header>
+          <Flex>
+            <Title>Marketplace</Title>
+          </Flex>
+          <Nav>
+            <Ul>
+              <Li>
+                <Link to="/">
+                  <TextLink>Inicio</TextLink>
+                </Link>
+              </Li>
+              <Li>
+                <Link to="/add">
+                  <TextLink>Añadir</TextLink>
+                </Link>
+              </Li>
+              <Li>
+                <Link to="/cart">
+                  <TextLink>
+                    <BsCart2 />
+                  </TextLink>
+                </Link>
+              </Li>
+              <Li>
+                <Link to="/sign-in">
+                  <TextLink>
+                    <BiLogOut />
+                    Salir
+                  </TextLink>
+                </Link>
+              </Li>
+            </Ul>
+          </Nav>
+        </Header>
+      </>
+    );
+  } else {
+    console.log("Tamaño de la pantalla es: " + screen);
+    // return (
+    //   <Header>
+    //     <Flex>
+    //       <Title>Marketplace</Title>
+    //     </Flex>
+    //     <Nav>
+    //       <Ul>
+    //         <Li>
+    //           <Link to="/">Inicio</Link>
+    //         </Li>
+    //         <Li>
+    //           <Link to="/cart">
+    //             <BsCart2 />
+    //           </Link>
+    //         </Li>
+    //         <Li>
+    //           <Link to="blank">
+    //             <BiLogOut />
+    //           </Link>
+    //         </Li>
+    //       </Ul>
+    //     </Nav>
+    //   </Header>
+    // );
+  }
 }
