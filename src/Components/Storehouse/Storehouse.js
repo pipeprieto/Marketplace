@@ -5,7 +5,6 @@ import { data } from "../../product-data";
 import ModalDelete from "./modal/ModalDelP";
 import ModalEdit from "./modal/ModalEditP";
 
-//const ROLE = window.localStorage.getItem("ROLE");
 
 export default class Storehouse extends Component {
   state = {
@@ -15,11 +14,10 @@ export default class Storehouse extends Component {
   componentDidMount() {
     //ROLE === Roles.CASHIER && this.props.history.push("/cashier");
   }
-  
 
-  ///static contextType = data;
   render() {
-
+    let productStorage = JSON.parse(window.localStorage.getItem("productos"))== null ? data : JSON.parse(window.localStorage.getItem("productos"));
+    
     const handleOpenModal2 = () => {
       this.setState({ openModal2: true });
     };
@@ -58,7 +56,7 @@ export default class Storehouse extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.map((item, index) => (
+                      {productStorage.map((item, index) => (
                         <tr className="item" key={index}>
                           <td>{item.id}</td>
                           <td>{item.title}</td>

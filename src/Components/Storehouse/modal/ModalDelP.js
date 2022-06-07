@@ -32,8 +32,6 @@ export default function ModalDelete(props) {
                 <div >
                     <div>
                         <h1>Eliminar un producto</h1>
-                        <label>ingrese nombre del producto a eliminar:</label>
-                        <input className="" type="text" onChange={(e) => {setProname(e.target.value);}} />
                         <label>ingrese el id* del producto a eliminar:</label>
                         <input className="" type="text" onChange={(e) => {setproductId(e.target.value);}} required/>
                        
