@@ -39,7 +39,6 @@ export default function Header(props) {
                 <Link to="/">
                   <TextLink>
                     <BiLogOut />
-                    Salir
                   </TextLink>
                 </Link>
               </Li>

@@ -1,22 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Columns, Heading } from "react-bulma-components";
 import "bulma/css/bulma.min.css";
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAlert } from "react-alert";
+import Pagination from "../Pagination/Pagination";
 
-const ProductList = ({ handleAddProduct }) => {
-  const [product, setProduct] = useState([]);
-  const [page, setPage] = useState(1);
-  const [inicio, setInicio] = useState(0);
-  const [fin, setFin] = useState(10);
-
-  useEffect(() => {
-    let products = JSON.parse(window.localStorage.getItem("productos"));
-    console.log(products);
-    setProduct(products);
-  }, []);
-
+const ProductList = ({ handleAddProduct, product }) => {
   const alert = useAlert();
 
   const addToCart = (prod) => {
@@ -24,21 +14,6 @@ const ProductList = ({ handleAddProduct }) => {
     handleAddProduct(prod);
   };
 
-  const showProducts = () => {
-    let total = Math.ceil(product.length / 10);
-    if (page < total) {
-      setPage(page + 1);
-    } else {
-      if (page == total) {
-        setPage(page - 1);
-      } else {
-        console.log("No se puede cambiar más de página");
-      }
-    }
-    // for (let i = inicio; i < fin; i++) {
-    //   console.log(product[i].title);
-    // }
-  };
   return (
     <>
       <Heading className="has-text-centered">{"Productos "}</Heading>
@@ -76,15 +51,6 @@ const ProductList = ({ handleAddProduct }) => {
           );
         })}
       </Columns>
-      {/* <Pagination
-        total={Math.ceil(product.length / 10)}
-        align="center"
-        rounded={true}
-        autoHide={false}
-        onChange={showProducts}
-        current={page}
-        showPrevNext={false}
-      ></Pagination> */}
     </>
   );
 };
