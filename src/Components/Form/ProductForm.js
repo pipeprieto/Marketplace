@@ -49,7 +49,7 @@ export default function ProductForm({ header, provider, handleProductList }) {
         <Input type="number" name="prodrate" max={5} />
         <Label>Imagen del producto (url)</Label>
         <Input type="url" name="prodimg" />
-        <Link to="/">
+        <Link to="/productlist">
           <Button onClick={addProd}>
             <LinkText>Añadir</LinkText>
           </Button>
