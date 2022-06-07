@@ -140,7 +140,6 @@ const Button = styled.div`
   display: inline-block;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
