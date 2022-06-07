@@ -19,7 +19,7 @@ export default function Header(props) {
           <Nav>
             <Ul>
               <Li>
-                <Link to="/">
+                <Link to="/productlist">
                   <TextLink>Inicio</TextLink>
                 </Link>
               </Li>
@@ -36,7 +36,7 @@ export default function Header(props) {
                 </Link>
               </Li>
               <Li>
-                <Link to="blank">
+                <Link to="/">
                   <TextLink>
                     <BiLogOut />
                     Salir

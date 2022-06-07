@@ -95,26 +95,17 @@ export default function Pagination({ productList }) {
             <a href="#" class="">
               Previous{" "}
             </a>
-            <a
-              href="#"
-              class="next ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-            >
+            <a href="#" class="">
               Next{" "}
             </a>
           </div>
-          <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+          <div class="">
             <div>
-              <nav
-                class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-                aria-label="Pagination"
-              >
-                <a
-                  href="#"
-                  class="back relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
+              <nav class="" aria-label="Pagination">
+                <a href="#" class="">
                   <span class="sr-only">Previous</span>
                   <svg
-                    class="h-5 w-5"
+                    class=""
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"

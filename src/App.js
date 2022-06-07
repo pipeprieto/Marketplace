@@ -87,11 +87,11 @@ const App = () => {
           <Header onLoad={getData} />
 
           <Routes>
-            <Route path="/sign-in" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route
               exact
-              path="/"
+              path="/productlist"
               element={
                 <ProductList
                   provider="N/A"
