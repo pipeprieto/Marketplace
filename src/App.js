@@ -14,9 +14,8 @@ import { data } from "./product-data";
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
   const [productList, setProductList] = useState([]);
-  // console.log(ContextProvider());
-  // const context = useContext(Globalcontext);
-  useEffect(() => {
+
+  const getData = () => {
     var newProducts = [];
     for (let i = 0; i < data.length; i++) {
       newProducts[i] = {
@@ -30,9 +29,7 @@ const App = () => {
       };
     }
     window.localStorage.setItem("productos", JSON.stringify(newProducts));
-    //setProductList(newProducts);
-  }, []);
-
+  };
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
     if (ProductExist) {
@@ -77,10 +74,6 @@ const App = () => {
     updatedProducts.push(products);
     console.log(updatedProducts);
     window.localStorage.setItem("productos", JSON.stringify(updatedProducts));
-
-    // let storage = JSON.parse(window.localStorage.getItem("productos"));
-    // storage.push(updatedProducts);
-    // window.localStorage.setItem("productos", JSON.stringify(storage));
     setProductList(updatedProducts);
   };
 
@@ -89,7 +82,7 @@ const App = () => {
     <div className="App">
       <Router>
         <Fragment>
-          <Header />
+          <Header onLoad={getData} />
 
           <Routes>
             <Route
