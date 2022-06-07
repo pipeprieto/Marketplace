@@ -9,7 +9,8 @@ const options = {
   position: 'bottom center',
   timeout: 5000,
   offset: '30px',
-  transition: 'scale'
+  transition: 'scale',
+  
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

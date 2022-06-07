@@ -195,7 +195,7 @@ function LoginForm() {
                                     </div>
 
                                     <p className="forgot-password text-right">
-                                        Not registered yet <a href="/sign-up">sign up?</a>
+                                        No te has registrado? <a href="/sign-up">registrate aqui</a>
                                     </p>
                                 </div>
                             </div>
