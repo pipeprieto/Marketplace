@@ -8,6 +8,7 @@ import ProductForm from "./Components/Form/ProductForm";
 import Login from "./Components/LogIn/LogIn";
 import SignUp from "./Components/SignUp/SignUp";
 import { data } from "./product-data";
+import Products from "./Components/Products/Products";
 // import {
 //   ContextProvider,
 //   Globalcontext,
@@ -16,6 +17,17 @@ import { data } from "./product-data";
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
   const [productList, setProductList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [product, setProduct] = useState([]);
+  
+
+  useEffect(() => {
+    let products = JSON.parse(window.localStorage.getItem("productos"));
+    
+    setProduct(products.slice((page-1),(page-1+10)));
+    setTotalPages(Math.ceil(products.length/10))
+  }, []);
 
   const getData = () => {
     var newProducts = [];
@@ -31,6 +43,8 @@ const App = () => {
       };
     }
     window.localStorage.setItem("productos", JSON.stringify(newProducts));
+    
+    
   };
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
@@ -79,12 +93,19 @@ const App = () => {
     setProductList(updatedProducts);
   };
 
+  const handleClick = num => {
+    setPage(num);
+    let products = JSON.parse(window.localStorage.getItem("productos"));
+    
+    setProduct(products.slice(((num*10)-10),((num*10))));
+  };
+
   return (
     // <ContextProvider>
     <div className="App">
       <Router>
         <Fragment>
-          <Header onLoad={getData} />
+          <Header  />
 
           <Routes>
             <Route path="/" element={<Login />} />
@@ -93,9 +114,13 @@ const App = () => {
               exact
               path="/productlist"
               element={
-                <ProductList
+                <Products
                   provider="N/A"
                   handleAddProduct={handleAddProduct}
+                  handleClick={handleClick}
+                  page={page}
+                  totalPages={totalPages}
+                  product={product}
                 />
               }
             />
