@@ -1,6 +1,5 @@
 import Header from "./Components/Header/Header";
 import React, { Fragment, useState, useEffect } from "react";
-import ProductList from "./Components/ProductList/ProductList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Cart from "./Components/Cart/Cart";
 import CheckOut from "./Components/CheckOut/CheckOut";
@@ -20,13 +19,12 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [product, setProduct] = useState([]);
-  
 
   useEffect(() => {
     let products = JSON.parse(window.localStorage.getItem("productos"));
-    
-    setProduct(products.slice((page-1),(page-1+10)));
-    setTotalPages(Math.ceil(products.length/10))
+
+    setProduct(products.slice(page - 1, page - 1 + 10));
+    setTotalPages(Math.ceil(products.length / 10));
   }, []);
 
   const getData = () => {
@@ -43,8 +41,6 @@ const App = () => {
       };
     }
     window.localStorage.setItem("productos", JSON.stringify(newProducts));
-    
-    
   };
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
@@ -93,11 +89,11 @@ const App = () => {
     setProductList(updatedProducts);
   };
 
-  const handleClick = num => {
+  const handleClick = (num) => {
     setPage(num);
     let products = JSON.parse(window.localStorage.getItem("productos"));
-    
-    setProduct(products.slice(((num*10)-10),((num*10))));
+
+    setProduct(products.slice(num * 10 - 10, num * 10));
   };
 
   return (
@@ -105,7 +101,7 @@ const App = () => {
     <div className="App">
       <Router>
         <Fragment>
-          <Header  />
+          <Header />
 
           <Routes>
             <Route path="/" element={<Login />} />
