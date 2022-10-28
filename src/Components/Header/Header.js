@@ -50,32 +50,9 @@ export default function Header(props) {
     );
   } else {
     console.log("Tamaño de la pantalla es: " + screen);
-    // return (
-    //   <Header>
-    //     <Flex>
-    //       <Title>Marketplace</Title>
-    //     </Flex>
-    //     <Nav>
-    //       <Ul>
-    //         <Li>
-    //           <Link to="/">Inicio</Link>
-    //         </Li>
-    //         <Li>
-    //           <Link to="/cart">
-    //             <BsCart2 />
-    //           </Link>
-    //         </Li>
-    //         <Li>
-    //           <Link to="blank">
-    //             <BiLogOut />
-    //           </Link>
-    //         </Li>
-    //       </Ul>
-    //     </Nav>
-    //   </Header>
-    // );
   }
 }
+
 //Styled Components
 
 const Headercss = styledComponents.header`{
